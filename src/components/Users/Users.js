@@ -27,7 +27,7 @@ const Users = () => {
                                       companyCatchPhrase={value.company.catchPhrase}
                                       companyBs={value.company.bs}
                 />
-            )}
+            )};
         </div>
     );
 };

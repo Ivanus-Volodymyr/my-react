@@ -1,14 +1,15 @@
 import '../../App.css'
 import Post from "../Post/Post";
 import {useEffect, useState} from "react";
+
 const Posts = () => {
     let [posts, setPosts] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(resolve=>resolve.json())
-            .then(posts=>setPosts(posts))
-    },[])
+            .then(resolve => resolve.json())
+            .then(posts => setPosts(posts))
+    }, []);
 
     return (
         <div className={'Posts'}>

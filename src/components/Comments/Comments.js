@@ -9,7 +9,7 @@ const Comments = () => {
         fetch('https://jsonplaceholder.typicode.com/comments')
             .then(resolve => resolve.json())
             .then(comments => setComments(comments))
-    }, [])
+    }, []);
     return (
         <div className={'Comments'}>
             {comments.map(value => <Comment postId={value.postId}

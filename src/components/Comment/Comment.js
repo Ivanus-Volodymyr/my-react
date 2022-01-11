@@ -3,6 +3,7 @@ import React from 'react';
 import '../../App.css'
 
 const Comment = ({postId, id, name, email, body}) => {
+
     return (
         <div className={'Comment'}>
             <h3>PostId : {postId}</h3>

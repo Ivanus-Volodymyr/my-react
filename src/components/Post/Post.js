@@ -1,7 +1,8 @@
 import React from 'react';
 
 import '../../App.css'
-const Post = ({userId,id,title,body}) => {
+
+const Post = ({userId, id, title, body}) => {
     return (
         <div className={'Post'}>
             <h3>UserId : {userId}</h3>
