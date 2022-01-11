@@ -1,38 +1,63 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
+  padding: 7px;
+}
+.UpBlock{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  background: lightgray;
+}
+.User {
+  margin: 2px;
+  border: 1px solid red;
+  background: #a1acb1;
+  width: 96%;
+  padding: 15px;
+  height: 500px;
+}
+.Users, .Posts{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 49%;
+  padding-bottom: 30px;
 }
-
-.App-link {
-  color: #61dafb;
+.Post{
+  width: 18%;
+  padding: 5px;
+  height: auto;
+  border: 1px solid red;
+  border-radius: 5px;
+  margin: 2px;
+  background: #9cb1b8;
+  text-align: center;
 }
+.Comment{
+  width: 17%;
+  padding: 5px;
+  height: 300px;
+  border: 1px solid red;
+  border-radius: 10px;
+  margin: 10px;
+  background: #d0eaf3;
+  text-align: center;
+}
+.Comments{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 40px;
+  background: #e9f2f5;
+  padding-top: 40px;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
 }
