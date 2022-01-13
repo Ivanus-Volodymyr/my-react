@@ -23,6 +23,7 @@ const UserDetails = ({
                              }
                          }, getPostId
                      }) => {
+
     return (
         <div className={'UserDetails'}>
             <h2>User Id : {id}</h2>

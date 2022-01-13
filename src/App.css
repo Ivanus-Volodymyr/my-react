@@ -1,65 +1,72 @@
-.MainUsers{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
+.MainUsers {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
-button{
-  padding: 5px 40px;
+
+button {
+    padding: 5px 40px;
 
 }
-hr{
-  height: 1px;
-  background: darkblue;
-  width: 220px;
+
+hr {
+    height: 1px;
+    background: darkblue;
+    width: 220px;
 }
-.UsersMain{
-  display: flex;
-  flex-direction: row;
-  width: 50%;
-  border: 1px solid red;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 12px;
+
+.UsersMain {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    border: 1px solid red;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 12px;
 }
-.UserDetailsMain{
-  display: flex;
-  width: 50%;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  margin: 12px;
+
+.UserDetailsMain {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    margin: 12px;
 }
-.User, .UserDetails{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 280px;
-  padding: 5px;
-  margin: 10px;
-  border: 1px  solid darkblue;
-  text-align: center;
-  border-radius: 10px;
-  background: #9cacc7;
+
+.User, .UserDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
+    padding: 5px;
+    margin: 10px;
+    border: 1px solid darkblue;
+    text-align: center;
+    border-radius: 10px;
+    background: #9cacc7;
 }
-.MainPost{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 12px;
-  flex-direction: row;
-  width: 100%;
-  flex-wrap: wrap;
+
+.MainPost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 12px;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
 
 }
-.Post{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  border: 5px  solid darkblue;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px;
-  height: 400px;
+
+.Post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    border: 5px solid darkblue;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    height: 400px;
 }

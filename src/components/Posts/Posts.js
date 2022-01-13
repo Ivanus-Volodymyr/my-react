@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Posts = ({post:{userId, id, title, body}}) => {
+
     return (
         <div className={'Post'}>
             <h2>User Id : {userId}</h2>

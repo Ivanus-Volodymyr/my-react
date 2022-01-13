@@ -15,6 +15,7 @@ const Users = () => {
     let [user, setUser] = useState(null);
     let [posts, setPosts] = useState([]);
 
+
     useEffect(() => {
         jsonPlaceholder.getUsers()
             .then(users => setUsers(users));
@@ -30,7 +31,6 @@ const Users = () => {
         jsonPlaceholder.getPosts()
             .then(posts => setPosts(posts.filter(value => value.userId === id)));
     };
-
 
     return (
         <>
