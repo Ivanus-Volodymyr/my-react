@@ -1,28 +1,53 @@
 import React, {useEffect, useState} from 'react';
+
 import User from "../User/User";
 import UserDetails from "../UserDetails/UserDetails";
+import '../../App.css'
+import Posts from "../Posts/Posts";
+import {jsonPlaceholder} from "../../service/jsonplaceholder.service";
+
+
 
 const Users = () => {
 
+
     let [users, setUsers] = useState([]);
     let [user, setUser] = useState(null);
+    let [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(resolve => resolve.json())
-            .then(users => setUsers(users))
-    }, [])
+        jsonPlaceholder.getUsers()
+            .then(users => setUsers(users));
+    }, []);
+
 
     let getUserId = (id) => {
-        fetch('https://jsonplaceholder.typicode.com/users/' + id)
-            .then(resolve => resolve.json())
-            .then(user => setUser(user))
-    }
+        jsonPlaceholder.getUserById(id)
+            .then(user => setUser(user));
+    };
+
+    let getPostId = (id) => {
+        jsonPlaceholder.getPosts()
+            .then(posts => setPosts(posts.filter(value => value.userId === id)));
+    };
+
+
     return (
-        <div>
-            <div>{users.map(value => <User key={value.id} user={value} getUserId={getUserId}/>)}</div>
-            {user && <div><UserDetails details={user}/></div>}
-        </div>
+        <>
+            <div className={'MainUsers'}>
+                <div className={'UsersMain'}>
+                    {users.map(value => <User key={value.id} user={value} getUserId={getUserId}/>)};
+                </div>
+
+                <div className={'UserDetailsMain'}>
+                    {user && <div><UserDetails details={user} getPostId={getPostId}/></div>};
+                </div>
+            </div>
+
+            <div className={'MainPost'}>
+                {posts.map(value => <Posts key={value.id} post={value}/>)}
+            </div>
+        </>
     );
 };
 
