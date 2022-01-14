@@ -1,16 +1,25 @@
 import React, {useState} from 'react';
 
+import {jsonPlaceholder} from "../../service/jsonplaceholder.service";
+import User from "../User/User";
+
 
 const Form = () => {
-    let submit=(e)=>{
-        e.preventDefault();
-        console.log(form);
+    let [users, setUsers] = useState([]);
+    let [form, setForm] = useState({name: '', username: '', email: ''});
+
+    let handler = (e) => {
+        setForm({...form, [e.target.name]: e.target.value})
     }
 
-    let [form, setForm] = useState({name:'', username:'', email:''});
+    let submit = (e) => {
+        e.preventDefault();
+        jsonPlaceholder.getUsers()
+            .then(users => setUsers(users.filter(value =>
+                value.name.includes(form.name)
+                && value.username.includes(form.username)
+                && value.email.includes(form.email))));
 
-    let handler=(e)=>{
-        setForm({...form,[e.target.name]:e.target.value})
     }
 
     return (
@@ -21,6 +30,11 @@ const Form = () => {
                 <div>Input Email : <label><input type="text" name={'email'} value={form.email} onChange={handler}/></label></div>
                 <button>Check</button>
             </form>
+
+
+            <div className={'Users'}>
+                {users.map(value => <User key={value.id}  name={value.name} username={value.username} email={value.email}/>)}
+            </div>
         </div>
     );
 };

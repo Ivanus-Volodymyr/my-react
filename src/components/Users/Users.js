@@ -8,6 +8,7 @@ const Users = () => {
 
     let [users, setUsers] = useState([]);
 
+
     useEffect(() => {
         jsonPlaceholder.getUsers()
             .then(users => setUsers(users))
