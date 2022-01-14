@@ -5,6 +5,7 @@ import User from "../User/User";
 
 
 const Form = () => {
+
     let [users, setUsers] = useState([]);
     let [form, setForm] = useState({name: '', username: '', email: ''});
 
@@ -16,9 +17,9 @@ const Form = () => {
         e.preventDefault();
         jsonPlaceholder.getUsers()
             .then(users => setUsers(users.filter(value =>
-                value.name.includes(form.name)
-                && value.username.includes(form.username)
-                && value.email.includes(form.email))));
+                value.name.toLowerCase().includes(form.name)
+                && value.username.toLowerCase().includes(form.username)
+                && value.email.toLowerCase().includes(form.email))));
 
     }
 
