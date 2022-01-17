@@ -1,20 +1,13 @@
 import './App.css';
-import Users from "./components/Users/Users";
-import Posts from "./components/Posts/Posts";
-import Comments from "./components/Comments/Comments";
 
+import Form from "./components/Form/Form";
+import Cars from "./components/Cars/Cars";
 
 function App() {
     return (
         <div className="App">
-            <div className={"UpBlock"}>
-                <Users/>
-                <Posts/>
-            </div>
-
-            <div className={"DownBlock"}>
-                <Comments/>
-            </div>
+            <Form/>
+            <Cars/>
         </div>
     );
 }
