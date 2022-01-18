@@ -4,12 +4,12 @@ import {carsService} from "../../service/cars.service";
 import Car from "../Car/Car";
 import './Cars.css'
 
-const Cars = () => {
+const Cars = ({trigger}) => {
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
         carsService.getAll().then(value => setCars([...value]));
-    }, []);
+    }, [trigger]);
 
     return (
         <div className={'Cars'}>

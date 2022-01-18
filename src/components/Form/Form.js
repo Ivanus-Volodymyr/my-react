@@ -1,29 +1,38 @@
 import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
+import {joiResolver} from "@hookform/resolvers/joi";
+import {carValidator} from "../../validators/car.validator";
 
 import {carsService} from "../../service/cars.service";
 
-const Form = () => {
+const Form = ({update}) => {
     const [formErrors, setFormErrors] = useState({});
 
     const {
-        register, handleSubmit, watch, formState: {errors}
-    } = useForm();
+        register, handleSubmit, formState: {errors}
+    } = useForm({resolver: joiResolver(carValidator), mode: 'onTouched'});
 
-    const submit = (data) => {
-        carsService.create(data).then(value => console.log(value)).catch(error => setFormErrors(error.response.data))
+    const submit = async (data) => {
+        try {
+            const newCar = await carsService.create(data);
+            update(newCar);
+        } catch (error) {
+            setFormErrors(error.response.data);
+        }
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit(submit)}>
                 <div><label>Model : <input type="text" defaultValue={''} {...register('model')}/></label></div>
-                {formErrors.model && <span>{formErrors.model.message}</span>}
+                {errors.model && <span> {errors.model.message}</span>}
                 <div><label>Price : <input type="text" defaultValue={''} {...register('price')}/></label></div>
-                {formErrors.price && <span>{formErrors.price.message}</span>}
+                {errors.price && <span>{errors.price.message}</span>}
                 <div><label>Year : <input type="text" defaultValue={''} {...register('year')}/></label></div>
-                {formErrors.year && <span>{formErrors.year.message}</span>}
-                <button>Submit</button>
+                {errors.year && <span>{errors.year.message}</span>}
+                <div>
+                    <button>Submit</button>
+                </div>
             </form>
         </div>
     );
