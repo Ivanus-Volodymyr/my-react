@@ -1,0 +1,13 @@
+.UserAlbum{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 700px;
+    height: 300px;
+    border-radius: 10px;
+    border: 1px solid blue;
+    background: aliceblue;
+    margin-top: 10px;
+
+}

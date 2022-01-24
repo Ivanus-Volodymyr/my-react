@@ -1,19 +1,24 @@
 import React from 'react';
 
-import './User.css'
-import UserDetails from "../UserDetails/UserDetails";
+import './User.css';
+import {Link} from "react-router-dom";
 
-const User = ({user: {id, name, username, email}}) => {
+const User = ({user}) => {
+    const {id, name} = user;
 
-    const details = () => {
-        <UserDetails id={id}/>
-    }
     return (
         <div className={'User'}>
-            <h3>{name}</h3>
-            <div>{username}</div>
-            <div>Email : {email}</div>
-            <button onClick={details}>User Details</button>
+            <h2>User</h2>
+            <h3>Id : {id}</h3>
+            <h3>Name : {name}</h3>
+            <div>
+                <Link to={id.toString()} state={user}>
+                    <button>User Details</button>
+                </Link>
+                <Link to={`${id}/albums`}>
+                    <button>User Album</button>
+                </Link>
+            </div>
         </div>
     );
 };

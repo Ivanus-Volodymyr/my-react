@@ -1,28 +1,40 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {Link, Outlet, useLocation, useParams} from "react-router-dom";
+
+import './UserDetails.css';
+import {usersService} from "../../service/users.service";
 
 const UserDetails = () => {
+    const {id} = useParams();
+    const [user, setUser] = useState({});
+    const {state} = useLocation();
+
+    useEffect(() => {
+        if (state) {
+            setUser(state);
+            return;
+        }
+        usersService.getByID(id).then(value => setUser({...value}))
+    }, [id, setUser, state]);
 
     return (
-        <div>
-            {/*<h3>{name}</h3>*/}
-            {/*<div>{username}</div>*/}
-            {/*<div>Email : {email}</div>*/}
-            {/*<ul><h4>Address</h4>*/}
-            {/*    <li>Street : {street}</li>*/}
-            {/*    <li>Suite : {suite}</li>*/}
-            {/*    <li>City : {city}</li>*/}
-            {/*    <li>Zipcode : {zipcode}</li>*/}
-            {/*    <li>Lat : {lat}</li>*/}
-            {/*    <li>Lng : {lng}</li>*/}
-            {/*</ul>*/}
-            {/*<div>Phone : {phone}</div>*/}
-            {/*<div>Website : {website}</div>*/}
-            {/*<ul><h4>Company</h4>*/}
-            {/*    <li>CompanyName : {companyName}</li>*/}
-            {/*    <li>CompanyCatchPhrase : {companyCatchPhrase}</li>*/}
-            {/*    <li>CompanyBs : {companyBs}</li>*/}
-            {/*</ul>*/}
-        </div>
+        <>
+            <div className={'UserDetails'}>
+                <h2>User with id : {id} details</h2>
+                <h3>Id : {user.id}</h3>
+                <h3>Name : {user.name}</h3>
+                <h4>UserName : {user.username}</h4>
+                <h5>Email : {user.email}</h5>
+                <h5>Phone : {user.phone}</h5>
+                <h5>Website : {user.website}</h5>
+                <Link to={'posts'}>
+                    <button>Post</button>
+                </Link>
+            </div>
+            <div className={'UserPosts'}>
+                <Outlet/>
+            </div>
+        </>
     );
 };
 

@@ -1,0 +1,19 @@
+.Users {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.OutletClassUsers {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    height: auto;
+}
+
+h1 {
+    margin-left: 100px;
+}

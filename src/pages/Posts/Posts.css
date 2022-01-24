@@ -1,0 +1,26 @@
+.MainPosts{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.Posts{
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px;
+}
+.Posts{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.PostsOutlet{
+    width: 50%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}

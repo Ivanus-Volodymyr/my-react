@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    background: darkgrey;
+}
+
+.header a {
+    text-align: center;
+    text-decoration: none;
+    font-size: 40px;
+    color: blue;
+}
+
+.header a[class='active'] {
+    color: #9e6868;
+    text-decoration: underline;
+}

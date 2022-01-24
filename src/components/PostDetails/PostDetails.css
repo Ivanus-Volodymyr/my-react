@@ -1,0 +1,23 @@
+.PostDetails {
+    width: 300px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: #a1acb1;
+    height: 500px;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+
+.PostDetails button {
+    padding: 10px 20px;
+    font-size: 15px;
+}
+
+.PostComments {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
