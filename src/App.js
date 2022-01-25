@@ -1,5 +1,6 @@
 import './App.css';
-import {Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
+import Episodes from "./Component/Episodes/Episodes";
 
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
         <div className="App">
 
             <Routes>
-
+                <Route path={'/'} element={<Episodes/>}/>
             </Routes>
         </div>
     );
