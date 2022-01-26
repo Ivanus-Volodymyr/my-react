@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {episodesService} from "../../service/episodes.service";
+import Episode from "../Episode/Episode";
 
 
 const Episodes = () => {
@@ -14,7 +15,7 @@ const Episodes = () => {
 
     return (
         <div>
-            {episodes.map(episode => {})}
+            {episodes.map(episode => <Episode key={episode.id} episode={episode}/>)}
         </div>
     );
 };
