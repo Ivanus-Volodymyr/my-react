@@ -1,15 +1,20 @@
-import React, {useEffect} from 'react';
-import {rick_and_mortyService} from "../../service/rick_and_morty.service";
+import React, {useEffect, useState} from 'react';
+import {episodesService} from "../../service/episodes.service";
+
 
 const Episodes = () => {
+    const [episodes, setEpisodes] = useState([]);
 
     useEffect(() => {
-        rick_and_mortyService.getAll().then(value => console.log(value))
+        episodesService.getAll().then(value => {
+            const episodes = [...value.results];
+            setEpisodes(episodes)
+        })
     }, []);
 
     return (
         <div>
-
+            {episodes.map(episode => {})}
         </div>
     );
 };
