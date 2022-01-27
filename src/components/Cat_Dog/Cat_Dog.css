@@ -1,0 +1,19 @@
+.FormBlock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+button{
+    padding: 1px 5px;
+    margin: 0 20px 0 5px;
+}
+hr{
+    height: 2px;
+    width: 100%;
+}
+.Animal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

@@ -1,0 +1,7 @@
+.Cat{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    padding: 20px;
+}
