@@ -1,6 +1,7 @@
 import './App.css';
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, Navigate} from "react-router-dom";
 import Episodes from "./Component/Episodes/Episodes";
+import Header from "./Component/Header/Header";
 
 
 function App() {
@@ -8,7 +9,11 @@ function App() {
         <div className="App">
 
             <Routes>
-                <Route path={'/'} element={<Episodes/>}/>
+                <Route path={'/'} element={<Header/>}>
+                    <Route index element={<Navigate to={'episodes/1'}/>}/>
+                    <Route path={'episodes/:id'} element={<Episodes/>}/>
+                </Route>
+
             </Routes>
         </div>
     );

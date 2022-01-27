@@ -1,0 +1,8 @@
+.header{
+    width: 100%;
+    padding: 10px;
+    background: blue;
+}
+.header a{
+    color: red;
+}
