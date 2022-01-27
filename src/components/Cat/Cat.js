@@ -7,7 +7,7 @@ const Cat = ({cat, dispatch}) => {
         <div className={'Cat'}>
             <h2>{cat.cat}</h2>
             <div>
-                <button onClick={() => dispatch({type: 'delete', payload: cat.id})}>Delete</button>
+                <button onClick={() => dispatch({type: 'delete_cat', payload: cat.id})}>Delete</button>
             </div>
         </div>
     );
