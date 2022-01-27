@@ -23,7 +23,7 @@ const reducer = (state, action) => {
 const CatDog = () => {
     const {register, handleSubmit} = useForm({});
     const [state, dispatch] = useReducer(reducer, {cat: [], dog: []});
-    console.log(state);
+
     const submit = async (data) => {
         const obj = {cat: data.cat, id: Math.round(Math.random() * 1000)}
         dispatch({type: 'add_cat', payload: obj})
@@ -31,7 +31,6 @@ const CatDog = () => {
 
     const submitDog = async (data) => {
         dispatch({type: 'add_dog', payload: {dog: data.dog, id: Math.round(Math.random() * 1000)}})
-        console.log(data.dog)
     }
 
 
