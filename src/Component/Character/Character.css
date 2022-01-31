@@ -1,0 +1,11 @@
+.Character{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 25%;
+    padding: 20px;
+    border: 1px solid blue;
+    border-radius: 20px;
+    margin: 20px;
+}

@@ -1,0 +1,14 @@
+.Characters{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.CharactersHeader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: lightgray;
+    height: 100px;
+}

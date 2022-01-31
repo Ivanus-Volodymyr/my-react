@@ -4,6 +4,6 @@ export default baseUrl;
 
 export const url = {
     episode: `/episode`,
-    characters: '/characters',
+    character: '/character',
     location: '/location'
 }
