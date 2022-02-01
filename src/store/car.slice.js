@@ -6,15 +6,15 @@ const initialState = {
     cars: [],
     status: null,
     error: null,
-    car: {}
+    car: {},
+    carForUpdate: null
 }
 
 export const getAllCars = createAsyncThunk(
     'cars/getAllCars',
     async (_, {rejectWithValue}) => {
         try {
-            const cars = await carsService.getAll()
-            return cars
+            return await carsService.getAll()
         } catch (e) {
             return rejectWithValue(e.message)
         }
@@ -22,33 +22,46 @@ export const getAllCars = createAsyncThunk(
 )
 export const createCar = createAsyncThunk(
     'cars/createCar',
-    async ({data}, {dispatch}) => {
+    async (data, {rejectWithValue}) => {
         try {
-            const newCar = await carsService.addCar(data);
-            dispatch(addCar({data: newCar}))
-
+            return await carsService.addCar(data)
+        } catch (e) {
+            return rejectWithValue(e.message)
+        }
+    }
+)
+export const deleteCar = createAsyncThunk(
+    'cars/deleteCar',
+    async ({id}) => {
+        try {
+            await carsService.deleteById(id)
+            return id
+        } catch (e) {
+            console.log(e)
+        }
+    }
+)
+export const updateCar = createAsyncThunk(
+    'cars/updateCar',
+    async ({id, car}) => {
+        try {
+            const newCar = await carsService.updateById(id, car);
+            return {car: newCar}
         } catch (e) {
             console.log(e)
         }
     }
 )
 
+
 const carSlice = createSlice({
     name: 'cars',
     initialState,
     reducers: {
-        addCar: (state, action) => {
-            state.cars.push({
-                ...action.payload.data
-
-            })
-        },
-        delCar: (state, action) => {
-            state.cars = state.cars.filter(car => car.id !== action.payload.id)
-        },
-        updateCar: (sate, action) => {
-
+        carToUpdate: (state, action) => {
+            state.carForUpdate = action.payload.car
         }
+
     },
     extraReducers: {
         [getAllCars.pending]: (state) => {
@@ -58,14 +71,22 @@ const carSlice = createSlice({
         [getAllCars.fulfilled]: (state, action) => {
             state.cars = action.payload
         },
-        [getAllCars.rejected]: (state, action) => {
-
+        [createCar.fulfilled]: (state, action) => {
+            state.cars.push(action.payload)
         },
-        // [createCar.fulfilled]:()={}
+        [deleteCar.fulfilled]: (state, action) => {
+            state.cars = state.cars.filter(value => value.id !== action.payload)
+        },
+        [updateCar.fulfilled]: (state, action) => {
+            const index = state.cars.findIndex(car => car.id === action.payload.car.id);
+            state.cars[index] = action.payload.car
+            state.carForUpdate = null
+        }
+
     }
 })
 
 const carReducer = carSlice.reducer;
+export const {carToUpdate} = carSlice.actions;
 
-export const {addCar, delCar} = carSlice.actions;
 export default carReducer;
