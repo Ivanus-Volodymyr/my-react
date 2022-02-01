@@ -7,14 +7,7 @@ import Comments from "./components/Comments/Comments";
 function App() {
     return (
         <div className="App">
-            <div className={"UpBlock"}>
-                <Users/>
-                <Posts/>
-            </div>
-
-            <div className={"DownBlock"}>
-                <Comments/>
-            </div>
+            
         </div>
     );
 }
