@@ -1,0 +1,8 @@
+.Header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Form{
+    padding: 50px;
+}
