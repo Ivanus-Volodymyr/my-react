@@ -7,13 +7,13 @@ import Buttons from "../../components/Buttons/Buttons";
 
 
 const MoviesPage = () => {
-    const {result, currentPage} = useAppSelector(state => state.movieReducer);
+    const {result, currentPage, genreId} = useAppSelector(state => state.movieReducer);
 
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(getAllMovies(currentPage))
-    }, [currentPage])
+    }, [currentPage, genreId])
 
     return (
         <div>

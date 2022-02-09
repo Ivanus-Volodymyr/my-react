@@ -3,6 +3,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IGenreProp, IMovie, IResults} from "../../interfaces";
 import {moviesServices} from "../../services";
 import {genresServices} from "../../services/genres.services";
+import {IMovieDetailsInterface} from "../../interfaces/movie.details.interface";
 
 interface IMoviesState {
     movies: IMovie;
@@ -10,7 +11,8 @@ interface IMoviesState {
     currentPage: number;
     total_pages: number;
     genre: IGenreProp[];
-    genreId: string
+    genreId: string;
+    movieDetails: IMovieDetailsInterface;
 }
 
 const initialState: IMoviesState = {
@@ -20,6 +22,7 @@ const initialState: IMoviesState = {
     total_pages: 1,
     genre: [],
     genreId: '',
+    movieDetails: {}
 }
 
 export const getAllMovies = createAsyncThunk(
@@ -33,6 +36,16 @@ export const getAllMovies = createAsyncThunk(
         }
     }
 )
+
+export const getMovieById = createAsyncThunk(
+    'movie/getMovieById',
+    async (id: number, {dispatch}) => {
+        const {data} = await moviesServices.getById(id);
+        if (data) {
+            dispatch(setMovieDetails({data}))
+        }
+    }
+);
 
 export const getAllGenres = createAsyncThunk(
     'movie/getAllGenres',
@@ -65,8 +78,13 @@ const movieSlice = createSlice({
         setGenre: (state, action: PayloadAction<{ genre: IGenreProp[] }>) => {
             state.genre = action.payload.genre
         },
-        setMovieByGenre: (state, action: PayloadAction<{ id: IGenreProp }>) => {
-
+        setMovieByGenreId: (state, action: PayloadAction<{ genres: IGenreProp }>) => {
+            if (action.payload.genres.id) {
+                state.genreId = action.payload.genres.id
+            }
+        },
+        setMovieDetails: (state, action: PayloadAction<{ data: IMovieDetailsInterface }>) => {
+            state.movieDetails = action.payload.data
         }
     }
 });
@@ -74,4 +92,4 @@ const movieSlice = createSlice({
 const movieReducer = movieSlice.reducer;
 export default movieReducer;
 
-export const {setMovies, setPage, setGenre, setMovieByGenre} = movieSlice.actions;
+export const {setMovies, setPage, setGenre, setMovieByGenreId, setMovieDetails} = movieSlice.actions;
