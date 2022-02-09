@@ -12,7 +12,7 @@ const Genre: FC<{ genres: IGenreProp }> = ({genres}) => {
 
     return (
         <div>
-            <button className={'GenreButton'} onClick={() => dispatch( setMovieByGenre(),)}>{id}---{name}</button>
+            <button className={'GenreButton'} onClick={() =>{}}>{id}---{name}</button>
         </div>
     );
 };
