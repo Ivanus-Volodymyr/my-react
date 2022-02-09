@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {FC} from 'react';
+import MoviesPage from "./pages/MoviesPage/MoviesPage";
+import GenreBadge from "./components/GenreBadge/GenreBadge";
 
-const App = () => {
+const App: FC = () => {
     return (
         <div>
-          
+            <MoviesPage/>
+            <GenreBadge/>
         </div>
     );
 };
