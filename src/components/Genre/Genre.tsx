@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import {IGenreProp} from "../../interfaces";
 
 import './Genre.css'
@@ -7,14 +7,14 @@ import {setMovieByGenreId} from "../../store";
 
 const Genre: FC<{ genres: IGenreProp }> = ({genres}) => {
     const dispatch = useAppDispatch();
-    const {id, name} = genres;
+    const {name} = genres;
 
 
     return (
         <div>
             <button className={'GenreButton'}
                     onClick={() => dispatch(setMovieByGenreId({genres}))}>
-                {id}---{name}
+                <div>{name}</div>
             </button>
         </div>
     );

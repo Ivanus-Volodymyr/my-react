@@ -6,5 +6,6 @@ export default baseUrl;
 export const urls = {
     movies: '/discover/movie?api_key=865a7502a1780159827b764af0bee919&page=',
     genre: '/genre/movie/list?api_key=865a7502a1780159827b764af0bee919',
-    movieById:'/movie/'
+    movieById: '/movie/',
+    movieByName: '/search/movie?api_key=865a7502a1780159827b764af0bee919&query='
 }

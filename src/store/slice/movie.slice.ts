@@ -1,19 +1,10 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {IGenreProp, IMovie, IResults} from "../../interfaces";
-import {moviesServices} from "../../services";
-import {genresServices} from "../../services/genres.services";
-import {IMovieDetailsInterface} from "../../interfaces/movie.details.interface";
+import {IGenreProp, IResults} from "../../interfaces";
+import {moviesServices, genresServices} from "../../services";
+import {II, IMoviesState} from "../../interfaces/initialstate.interfase";
 
-interface IMoviesState {
-    movies: IMovie;
-    result: IResults[];
-    currentPage: number;
-    total_pages: number;
-    genre: IGenreProp[];
-    genreId: string;
-    movieDetails: IMovieDetailsInterface;
-}
+
 
 const initialState: IMoviesState = {
     movies: {},
@@ -22,7 +13,9 @@ const initialState: IMoviesState = {
     total_pages: 1,
     genre: [],
     genreId: '',
-    movieDetails: {}
+    movieDetails: {},
+    name: [],
+    filmName: ''
 }
 
 export const getAllMovies = createAsyncThunk(
@@ -36,13 +29,23 @@ export const getAllMovies = createAsyncThunk(
         }
     }
 )
+export const getMovieByName = createAsyncThunk(
+    'movie/getMovieByName',
+    async (name: string, {dispatch, getState}) => {
+        const state = getState() as { movieReducer: IMoviesState };
+        const {data} = await moviesServices.getByName(name, state.movieReducer.currentPage);
+        if (data.results) {
+            dispatch(setMovieByName({result: data.results}))
+        }
+    }
+)
 
 export const getMovieById = createAsyncThunk(
     'movie/getMovieById',
-    async (id: number, {dispatch}) => {
+    async (id: string, {dispatch}) => {
         const {data} = await moviesServices.getById(id);
         if (data) {
-            dispatch(setMovieDetails({data}))
+            dispatch(setMovieDetails(data))
         }
     }
 );
@@ -59,37 +62,55 @@ export const getAllGenres = createAsyncThunk(
 
 
 const movieSlice = createSlice({
-    name: 'movie',
-    initialState,
-    reducers: {
-        setMovies: (state, action: PayloadAction<{ result: IResults[], total: number }>) => {
-            state.result = action.payload.result
-            state.total_pages = action.payload.total
-        },
-        setPage: (state, action) => {
-            if (state.currentPage >= 1 && state.currentPage <= state.total_pages) {
-                state.currentPage += action.payload;
-            } else if (state.currentPage < 1) {
-                state.currentPage = 1;
-            } else if (state.currentPage > state.total_pages) {
-                state.currentPage = state.total_pages;
+        name: 'movie',
+        initialState,
+        reducers: {
+            setMovies: (state, action: PayloadAction<{ result: IResults[], total: number }>) => {
+                state.result = action.payload.result
+                state.total_pages = action.payload.total
+            },
+            setPage: (state, action) => {
+                if (action.payload === 0) {
+                    state.currentPage = action.payload + 1;
+                } else if (state.currentPage >= 1 && state.currentPage <= state.total_pages) {
+                    state.currentPage += action.payload;
+                } else if (state.currentPage < 1) {
+                    state.currentPage = 1;
+                } else if (state.currentPage > state.total_pages) {
+                    state.currentPage = state.total_pages;
+                }
+            },
+            setGenre: (state, action: PayloadAction<{ genre: IGenreProp[] }>) => {
+                state.genre = action.payload.genre
+            },
+            setMovieByGenreId: (state, action: PayloadAction<{ genres: IGenreProp }>) => {
+                if (action.payload.genres.id) {
+                    state.genreId = action.payload.genres.id
+                }
+            },
+            setMovieDetails: (state, action: PayloadAction<{}>) => {
+                state.movieDetails = action.payload
+            },
+            setMovieByName: (state, action: PayloadAction<{ result: IResults[] }>) => {
+                state.name = action.payload.result
+                console.log(action.payload.result)
+            },
+            setFilmName: (state, action: PayloadAction<II>) => {
+                state.filmName = action.payload.name
             }
-        },
-        setGenre: (state, action: PayloadAction<{ genre: IGenreProp[] }>) => {
-            state.genre = action.payload.genre
-        },
-        setMovieByGenreId: (state, action: PayloadAction<{ genres: IGenreProp }>) => {
-            if (action.payload.genres.id) {
-                state.genreId = action.payload.genres.id
-            }
-        },
-        setMovieDetails: (state, action: PayloadAction<{ data: IMovieDetailsInterface }>) => {
-            state.movieDetails = action.payload.data
         }
-    }
-});
+    })
+;
 
 const movieReducer = movieSlice.reducer;
 export default movieReducer;
 
-export const {setMovies, setPage, setGenre, setMovieByGenreId, setMovieDetails} = movieSlice.actions;
+export const {
+    setMovies,
+    setPage,
+    setGenre,
+    setMovieByGenreId,
+    setMovieDetails,
+    setMovieByName,
+    setFilmName
+} = movieSlice.actions;

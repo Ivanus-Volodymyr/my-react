@@ -1,12 +1,7 @@
 export interface IMovieDetailsInterface {
     adult?: boolean,
     backdrop_path?: string,
-    belongs_to_collection?: {
-        id: number,
-        name: string,
-        poster_path: string,
-        backdrop_path: string
-    },
+    belongs_to_collection?: IBelongs_to_collection,
     budget?: number,
     genres?: [
         {
@@ -77,4 +72,11 @@ export interface IMovieDetailsInterface {
     video?: boolean,
     vote_average?: number,
     vote_count?: number
+}
+
+export interface IBelongs_to_collection {
+    id?: number,
+    name: string,
+    poster_path: string,
+    backdrop_path: string
 }

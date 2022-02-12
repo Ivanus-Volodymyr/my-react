@@ -20,4 +20,5 @@ export interface IResults {
     video?: boolean,
     vote_average?: number,
     vote_count?: number
+    name:IResults[]
 }

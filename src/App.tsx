@@ -7,7 +7,7 @@ import MovieListCard from "./components/MoviesListCard /MovieListCard";
 
 const App: FC = () => {
     return (
-        <div>
+        <>
             <Routes>
                 <Route path={'/'} element={<Layout/>}>
                     <Route index element={<Navigate to={'movies/1'}/>}/>
@@ -15,7 +15,7 @@ const App: FC = () => {
                     <Route path={'movies/:id/details'} element={<MovieListCard/>}/>
                 </Route>
             </Routes>
-        </div>
+        </>
     );
 };
 
