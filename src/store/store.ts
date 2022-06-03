@@ -1,12 +1,15 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
+
 import movieReducer from "./slice/movie.slice";
+import userReducer from "./slice/user.slice";
 
 const rootReducer = combineReducers({
-    movieReducer
+    movieReducer,
+    userReducer
 });
 
 export const mainStore = () => configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

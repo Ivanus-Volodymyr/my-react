@@ -5,7 +5,7 @@ import './User.css'
 
 const UserInfo = () => {
     return (
-        <Link to={''}>
+        <Link to={'/login'}>
             <div className={'UserInfo'}>
                 <div className={'UserImg'}>
                 </div>
